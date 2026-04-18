@@ -1,0 +1,29 @@
+# DiffSinger 聲學模型訓練範本 (Acoustic)
+base_config: configs/acoustic.yaml
+
+# 1. 資料路徑
+# 預期將 Reference Kit 的內容放入專案根目錄的 data/codingbear 下
+binary_data_dir: data/codingbear/binary
+dictionaries:
+  default: data/codingbear/dictionary.txt
+extra_phonemes: ['-']
+datasets:
+  - raw_data_dir: data/codingbear/raw
+    speaker: codingbear
+    language: default
+    test_prefixes: ['020', '030']
+
+# 2. 模型設定
+num_spk: 1
+use_spk_id: false
+hidden_size: 256
+
+# 3. 訓練細節
+batch_size: 16
+max_updates: 5000
+val_check_interval: 100
+val_with_vocoder: false
+
+# 4. 匯出設定 (重要)
+pl_trainer_accelerator: auto # 若環境不支援顯卡則改為 cpu
+pl_trainer_devices: 1

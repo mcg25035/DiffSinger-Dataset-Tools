@@ -7,7 +7,7 @@ const wavDir = __dirname;
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
 function playAudio(filePath) {
-    exec(`cvlc --play-and-exit "${filePath}" > /dev/null 2>&1`);
+    exec(`vlc -I dummy "${filePath}" vlc://quit > /dev/null 2>&1`);
 }
 
 async function processFiles() {
